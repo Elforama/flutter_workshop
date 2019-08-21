@@ -9,8 +9,9 @@ class CarouselItem extends StatelessWidget {
   String imageUrl;
   String title;
   String subtitle;
+  ImageStyle imageStyle;
 
-  CarouselItem({this.imageUrl, this.title, this.subtitle});
+  CarouselItem({this.imageUrl, this.title, this.subtitle, this.imageStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CarouselItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
-          CardImage(imageUrl),
+          CardImage(imageUrl, imageStyle),
           Text(title, style: Theme.of(context).textTheme.title,),
           Text(subtitle, style: Theme.of(context).textTheme.subtitle,)
         ],
