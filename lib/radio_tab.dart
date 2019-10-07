@@ -37,42 +37,20 @@ class MyApp extends StatelessWidget {
             color: Colors.grey[100],
             child: Center(
               child: ListView(
-                children: buildWidgets(),
+                children: [
+                  SizedBox(height: 12),
+                  Header(text: "Local Radio Stations"),
+                  buildCarousel(2, ImageStyle.rounded),
+                  Footer("Browse By Location"),
+                  Header(text: "Featured Radio Stations"),
+                  buildCarousel(3.4, ImageStyle.circle),
+                  Header(text: "Genres"),
+                  buildGenreGrid(),
+                ],
               ),
             ),
           )),
     );
-  }
-
-  List<Widget> buildWidgets() {
-    var widgets = <Widget>[
-      SizedBox(height: 12),
-      Header(text: "Local Radio Stations"),
-      buildCarousel(2, ImageStyle.rounded),
-      Footer("Browse By Location"),
-      Header(text: "Featured Radio Stations"),
-      buildCarousel(3.4, ImageStyle.circle),
-      Header(text: "Genres"),
-    ];
-    for (var i = 0; i < 10; i++) {
-      widgets.add(SizedBox(
-        height: 104,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 16.0 / 9.0,
-              child: CardImage(imageUrl, ImageStyle.rounded),
-            ),
-            AspectRatio(
-              aspectRatio: 16.0 / 9.0,
-              child: CardImage(imageUrl, ImageStyle.rounded),
-            ),
-          ],
-        ),
-      ));
-    }
-    return widgets;
   }
 
   Widget buildCarousel(double cellCount, ImageStyle imageStyle) {
@@ -92,4 +70,25 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildGenreGrid() {
+    return GridView.count(
+        crossAxisCount: 2,
+        padding: const EdgeInsets.all(16.0),
+        childAspectRatio: 16.0/9.0,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
+        physics: ScrollPhysics(),
+        shrinkWrap: true,
+        children: <Widget>[
+          CardImage(imageUrl, ImageStyle.rounded),
+          CardImage(imageUrl, ImageStyle.rounded),          
+          CardImage(imageUrl, ImageStyle.rounded),          
+          CardImage(imageUrl, ImageStyle.rounded),          
+          CardImage(imageUrl, ImageStyle.rounded),          
+          CardImage(imageUrl, ImageStyle.rounded),                                                  
+        ],
+    );
+  }
+
 }
